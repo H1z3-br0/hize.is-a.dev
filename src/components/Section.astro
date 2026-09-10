@@ -1,0 +1,11 @@
+---
+import type { Lang, SectionId } from '../config/site.ts';
+import { sectionLabel } from '../config/site.ts';
+
+const { id, lang } = Astro.props as { id: SectionId; lang: Lang };
+---
+
+<section id={id} class="section" aria-labelledby={`${id}-heading`}>
+  <h2 id={`${id}-heading`} class="section__label">{sectionLabel(id, lang)}</h2>
+  <div class="section__body"><slot /></div>
+</section>

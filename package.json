@@ -1,0 +1,20 @@
+{
+  "name": "imam-chobanov-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "data": "node scripts/fetch-data.mjs",
+    "dev": "astro dev",
+    "build": "npm run data && astro build",
+    "preview": "node scripts/serve.mjs",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^5.18.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^5.9.3"
+  }
+}

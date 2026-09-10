@@ -1,0 +1,46 @@
+{
+  "kdf": {
+    "name": "PBKDF2",
+    "hash": "SHA-256",
+    "iterations": 310000,
+    "salt": "e9/xcnNzjv92ua1xKd3pJg=="
+  },
+  "cipher": {
+    "name": "AES-GCM",
+    "iv": "WbuWm+Rxkgyw4svY",
+    "data": "NdMOuMZAy3jpQ7ow7F94P5IA3IZye3c="
+  },
+  "basis": [
+    [
+      10,
+      -33,
+      -7,
+      16
+    ],
+    [
+      1,
+      12,
+      2,
+      -1
+    ],
+    [
+      9,
+      14,
+      13,
+      52
+    ],
+    [
+      -15,
+      -15,
+      -24,
+      -92
+    ]
+  ],
+  "target": [
+    43,
+    99,
+    -11,
+    68
+  ],
+  "answerFormat": "x,y,z,w"
+}

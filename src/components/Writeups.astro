@@ -1,0 +1,28 @@
+---
+import type { Lang } from '../config/site.ts';
+import { writeups } from '../config/site.ts';
+import { longDate } from '../config/format.ts';
+import Section from './Section.astro';
+
+const { lang } = Astro.props as { lang: Lang };
+const items = [...writeups].sort((a, b) => b.date.localeCompare(a.date));
+---
+
+{
+  items.length > 0 && (
+    <Section id="writeups" lang={lang}>
+      <ul class="writeups">
+        {items.map((w) => (
+          <li class="writeup">
+            <a class="writeup__title" href={w.url}>
+              {w.text[lang].title}
+            </a>
+            <p class="writeup__meta">
+              {w.text[lang].event}, {w.category}, <time datetime={w.date}>{longDate(w.date, lang)}</time>
+            </p>
+          </li>
+        ))}
+      </ul>
+    </Section>
+  )
+}

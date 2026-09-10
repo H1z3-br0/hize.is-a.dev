@@ -1,0 +1,36 @@
+---
+import type { Lang } from '../config/site.ts';
+import { ui } from '../config/site.ts';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = ui[lang];
+const other = lang === 'ru' ? '/en/' : '/';
+---
+
+<div class="controls">
+  <a
+    class="controls__lang"
+    href={other}
+    hreflang={lang === 'ru' ? 'en' : 'ru'}
+    lang={lang === 'ru' ? 'en' : 'ru'}
+    aria-label={t.langSwitchLabel}>{t.langSwitchShort}</a
+  >
+  <button id="theme-toggle" class="controls__theme" type="button" hidden aria-label={t.theme.toDark}>
+    <svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" focusable="false">
+      <g class="icon-moon" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+        <path d="M20.2 14.6A8.7 8.7 0 0 1 9.4 3.8 8.5 8.5 0 1 0 20.2 14.6Z"></path>
+      </g>
+      <g
+        class="icon-sun"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round">
+        <circle cx="12" cy="12" r="4.1"></circle>
+        <path
+          d="M12 2.7v2.3M12 19v2.3M2.7 12H5M19 12h2.3M5.5 5.5l1.6 1.6M16.9 16.9l1.6 1.6M18.5 5.5l-1.6 1.6M7.1 16.9l-1.6 1.6"
+        ></path>
+      </g>
+    </svg>
+  </button>
+</div>

@@ -1,0 +1,64 @@
+---
+import type { Lang } from '../config/site.ts';
+import { name, lead, subLead, origin } from '../config/site.ts';
+import { flagPart1 } from '../config/challenge.ts';
+import { clientData } from '../lib/clientData.ts';
+import '../styles/main.css';
+
+const {
+  lang,
+  path = lang === 'ru' ? '/' : '/en/',
+  noindex = false,
+  title: titleOverride,
+} = Astro.props as { lang: Lang; path?: string; noindex?: boolean; title?: string };
+
+const title = titleOverride ?? `${name[lang]} — ${lead[lang].replace(/\.$/, '')}`;
+const description = `${lead[lang]} ${subLead[lang]}`;
+const canonical = new URL(path, origin).href;
+const payload = JSON.stringify(clientData(lang)).replace(/</g, String.fromCharCode(92) + 'u003c');
+
+const NL = String.fromCharCode(10);
+const flagComment = [
+  '',
+  '   flag, part 1 of 3',
+  `   ${flagPart1}`,
+  '',
+].join(NL);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <Fragment set:html={`<!--${flagComment}-->${NL}    `} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="ru" href={new URL('/', origin).href} />
+    <link rel="alternate" hreflang="en" href={new URL('/en/', origin).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', origin).href} />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={name[lang]} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/og.png', origin).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/stix-text.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/stix-italic.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script src="/theme.js" is:inline></script>
+  </head>
+  <body>
+    <canvas id="bg" aria-hidden="true"></canvas>
+    <script type="application/json" id="site-data" is:inline set:html={payload}></script>
+    <slot />
+    <script>
+      import '../scripts/main.ts';
+    </script>
+  </body>
+</html>

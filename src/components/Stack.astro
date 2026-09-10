@@ -1,0 +1,23 @@
+---
+import type { Lang } from '../config/site.ts';
+import { stack } from '../config/site.ts';
+import Section from './Section.astro';
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<Section id="stack" lang={lang}>
+  <dl class="stack">
+    {
+      stack.map((p) => (
+        <div class="stack__group">
+          <dt class="stack__name">
+            {p.label[lang]}
+            {p.note && <span class="stack__note">— {p.note[lang]}</span>}
+          </dt>
+          <dd class="stack__tools">{p.tools.join(', ')}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</Section>

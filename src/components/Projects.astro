@@ -1,0 +1,49 @@
+---
+import type { Lang } from '../config/site.ts';
+import { projects, ui } from '../config/site.ts';
+import Section from './Section.astro';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = ui[lang];
+---
+
+<Section id="projects" lang={lang}>
+  <ol class="projects">
+    {
+      projects.map((p, i) => {
+        const c = p.text[lang];
+        return (
+          <li class="project">
+            <details>
+              <summary class="project__head">
+                <span class="project__index" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <h3 class="project__title">{c.title}</h3>
+                <span class="project__stack">{p.tools.join(', ')}</span>
+                <span class="project__summary">{c.summary}</span>
+                <span
+                  class="project__more"
+                  aria-hidden="true"
+                  data-open={t.expand}
+                  data-close={t.collapse}
+                />
+              </summary>
+              <div class="project__body">
+                <p>{c.task}</p>
+                {p.notation && <p class="notation" set:html={p.notation} />}
+                <p>{c.approach}</p>
+                <p>{c.done}</p>
+                {p.repo && (
+                  <p class="project__link">
+                    <a href={p.repo}>{t.code}</a>
+                  </p>
+                )}
+              </div>
+            </details>
+          </li>
+        );
+      })
+    }
+  </ol>
+</Section>

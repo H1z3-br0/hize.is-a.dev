@@ -1,0 +1,26 @@
+---
+import type { Lang } from '../config/site.ts';
+import Controls from './Controls.astro';
+import Hero from './Hero.astro';
+import Now from './Now.astro';
+import Projects from './Projects.astro';
+import Stack from './Stack.astro';
+import Writeups from './Writeups.astro';
+import Contact from './Contact.astro';
+import SiteFooter from './SiteFooter.astro';
+
+const { lang } = Astro.props as { lang: Lang };
+const skip = lang === 'ru' ? 'К содержанию' : 'Skip to content';
+---
+
+<a class="skip-link" href="#main">{skip}</a>
+<Controls lang={lang} />
+<main id="main" class="page">
+  <Hero lang={lang} />
+  <Now lang={lang} />
+  <Projects lang={lang} />
+  <Stack lang={lang} />
+  <Writeups lang={lang} />
+  <Contact lang={lang} />
+</main>
+<SiteFooter lang={lang} />

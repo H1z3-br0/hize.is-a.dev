@@ -1,0 +1,15 @@
+---
+import type { Lang } from '../config/site.ts';
+import { ui } from '../config/site.ts';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = ui[lang];
+---
+
+<footer class="footer">
+  <p class="footer__row">
+    <span class="footer__palette" id="palette-hint" hidden>
+      {t.paletteHint} <kbd>Ctrl</kbd><kbd>K</kbd>
+    </span>
+  </p>
+</footer>

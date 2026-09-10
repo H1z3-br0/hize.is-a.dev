@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import Controls from '../components/Controls.astro';
+import { ui, name } from '../config/site.ts';
+
+const lang = 'ru' as const;
+const t = ui[lang];
+const en = ui.en;
+---
+
+<Base lang={lang} path="/404" noindex title={`404 — ${t.notFound.title}`}>
+  <Controls lang={lang} />
+  <main id="main" class="page page--notfound">
+    <section class="section">
+      <h2 class="section__label">404</h2>
+      <div class="section__body">
+        <h1 class="notfound__title">{t.notFound.title}</h1>
+        <p>{t.notFound.body}</p>
+        <p class="notfound__en" lang="en">{en.notFound.title}. {en.notFound.body}</p>
+        <p><a href="/">{t.notFound.home}</a>, <a href="/en/" lang="en">{en.notFound.home}</a></p>
+        <p class="pointers">{name[lang]}</p>
+      </div>
+    </section>
+  </main>
+</Base>

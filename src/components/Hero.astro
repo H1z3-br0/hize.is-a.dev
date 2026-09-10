@@ -1,0 +1,33 @@
+---
+import type { Lang } from '../config/site.ts';
+import { name, lead, subLead, ui, identity, githubUrl, telegramUrl, mailto } from '../config/site.ts';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = ui[lang];
+---
+
+<header class="hero">
+  <figure class="lattice">
+    <div class="lattice__frame">
+      <canvas id="lattice" class="lattice__canvas" width="640" height="440" aria-hidden="true"></canvas>
+      <noscript><p class="lattice__noscript">{t.latticeNoscript}</p></noscript>
+    </div>
+
+    <figcaption class="lattice__caption">
+      <span class="lattice__label">{t.latticeLabel}</span>
+      <span class="lattice__desc">{t.latticeCaption}</span>
+      <output id="lattice-metrics" class="lattice__metrics"></output>
+      <button id="lattice-reduce" class="lattice__reduce" type="button" hidden>{t.reduceAgain}</button>
+    </figcaption>
+  </figure>
+
+  <h1 class="hero__name">{name[lang]}</h1>
+  <p class="hero__lead">{lead[lang]}</p>
+  <p class="hero__sub">{subLead[lang]}</p>
+  <p class="hero__contacts">
+    <a href={mailto}>{identity.email}</a>, <a href={githubUrl} rel="me">GitHub</a>, <a
+      href={telegramUrl}
+      rel="me">Telegram</a
+    >
+  </p>
+</header>

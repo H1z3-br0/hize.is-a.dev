@@ -1,0 +1,35 @@
+---
+import type { Lang } from '../config/site.ts';
+import { ui, identity, mailto, telegramUrl, bareHost } from '../config/site.ts';
+import Section from './Section.astro';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = ui[lang];
+const pgp = identity.pgp;
+---
+
+<Section id="contact" lang={lang}>
+  <p>
+    {t.contactIntro} <a href={mailto}>{identity.email}</a> {t.or}
+    <a href={telegramUrl} rel="me">@{identity.telegram}</a>.
+  </p>
+
+  {
+    pgp && (
+      <p class="pgp">
+        <span class="pgp__label">{t.pgpLabel}</span>
+        <a class="pgp__value" href={pgp.keyUrl}>
+          {pgp.fingerprint}
+        </a>
+        <button class="pgp__copy" type="button" data-copy={pgp.fingerprint} hidden>
+          {t.copy}
+        </button>
+      </p>
+    )
+  }
+
+  <p class="pointers">
+    {t.curlHint} <code>curl {bareHost}</code>, <a href="/.well-known/security.txt">{t.securityTxt}</a>.
+  </p>
+  <p class="pointers pointers--flag">{t.flagHint}</p>
+</Section>
