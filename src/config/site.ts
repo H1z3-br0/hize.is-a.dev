@@ -112,18 +112,22 @@ export const projects: Project[] = [
   },
   {
     id: "codex-farm",
-    tools: ["Python", "AI Harness Configuration"],
+    tools: ["Python", "Docker", "CTFd"],
     repo: "https://github.com/H1z3-br0/C0d3x_Fun_Club",
     text: {
       ru: {
         title: "C0dex Fun Club",
-        summary: "Ферма ai агентов для решения CTF задач",
-        task: "Сделать ферму ai агентов, которая относительно быстро и хорошо решает ctf таски, но без дикого расхода токенов",
+        summary: "Автономный решатель CTF: рой моделей разбирает задачи и сам сдаёт флаги.",
+        task: "Хотелось агента, который решает задачу, а не подсказывает. Упирается всё в деньги: гонять несколько моделей на каждую задачу через платное API дорого, а без параллельных попыток решаемость падает.",
+        approach:
+          "Координатор-LLM раздаёт задачи роям, внутри роя три модели гонятся за одним флагом — побеждает первая подтвердившая. Запросы идут через локальный cli-proxy-api по OAuth-аккаунтам, а не через тарифицируемое API: отсюда и экономия. Каждая задача живёт в своём Docker-контейнере; застрявшему решателю подсыпают находки соседей и новый бюджет шагов, а детектор зацикливаний и счётчик расходов не дают рою жечь токены впустую.",
       },
       en: {
         title: "C0dex Fun Club",
-        summary: "A farm of AI agents that solves CTF tasks.",
-        task: "Build a farm of AI agents that solves CTF tasks reasonably fast and reasonably well, without burning an absurd number of tokens.",
+        summary: "An autonomous CTF solver: a swarm of models works the challenges and submits the flags itself.",
+        task: "I wanted an agent that solves a challenge rather than hints at it. Everything comes down to cost: racing several models on every challenge through a metered API is expensive, and without parallel attempts the solve rate drops.",
+        approach:
+          "A coordinator LLM hands challenges out to swarms; inside a swarm three models race for the same flag and the first to confirm one wins. Requests go through a local cli-proxy-api over OAuth accounts rather than a metered API — that is where the savings come from. Each challenge lives in its own Docker container; a stuck solver gets topped up with its siblings’ findings and a fresh step budget, while a loop detector and a cost tracker keep the swarm from burning tokens for nothing.",
       },
     },
   },
