@@ -37,18 +37,19 @@ export const lead: L = {
 
 export const subLead: L = {
   ru: "Катаю CTF в команде 4x10m, участвую в bug bounty программах и занимаюсь администрированием всякого разного.",
-  en: "CTF with 4x10m, vulnerability hunting in bug bounty.",
+  en: "I play CTF with 4x10m, take part in bug bounty programs, and administer all sorts of things.",
 };
 
 export const now: L<string[]> = {
   ru: [
     "Работаю над постквантовыми алгоритмами шифрования на решетках и линейных кодах.", 
     "Изучаю classic ML и DL.",
-    "На постоянной основе занимаюсь оптимизацией аптайма до нуля, или как это еще называют 'SRE'",
+    "На постоянной основе занимаюсь оптимизацией аптайма до нуля, или как это еще называют “SRE”",
   ],
   en: [
-    "TODO: replace with your own words. Writing a Plesken–Souvignier lattice isomorphism check in SageMath: the lattice class, LLL and short-vector enumeration are in place; fingerprint pruning is next.",
-    "Near-term goal — a cryptographer internship at Code of Security.",
+    "Working on post-quantum encryption algorithms built on lattices and linear codes.",
+    "Studying classical ML and deep learning.",
+    "Permanently optimizing uptime down to zero — or, as it is otherwise known, “SRE”.",
   ],
 };
 
@@ -61,8 +62,8 @@ export type Project = {
     title: string;
     summary: string;
     task: string;
-    approach: string;
-    done: string;
+    approach?: string;
+    done?: string;
   }>;
 };
 
@@ -74,7 +75,7 @@ export const projects: Project[] = [
     notation: "Λ₁ ≅ Λ₂ ⟺ ∃U ∈ GL<sub>n</sub>(ℤ) : U<sup>T</sup>G₁U = G₂",
     text: {
       ru: {
-        title: "Реализация алгоритма Плескена-Сувижнера для решения задачи изоморфизма решеток",
+        title: "Реализация алгоритма Плескена–Сувинье для решения задачи изоморфизма решеток",
         summary:
           "Определяет, задают ли два целочисленных базиса одну и ту же решётку.",
         task: "Даны два базиса. Нужно узнать, существует ли целочисленная замена базиса с определителем ±1, переводящая один в другой и сохраняющая все скалярные произведения. Перебором это не решается: группа GL(n, ℤ) бесконечна.",
@@ -83,7 +84,7 @@ export const projects: Project[] = [
         done: "Готовы класс решётки, LLL-редукция, перебор Финке–Поста и отсечение по fingerprint. Backtracking в работе.",
       },
       en: {
-        title: "Lattice isomorphism",
+        title: "The Plesken–Souvignier algorithm for the lattice isomorphism problem",
         summary: "Decides whether two integer bases span the same lattice.",
         task: "Given two bases, decide whether some integer change of basis with determinant ±1 maps one onto the other while preserving every inner product. Brute force is not an option: GL(n, ℤ) is infinite.",
         approach:
@@ -105,7 +106,7 @@ export const projects: Project[] = [
       en: {
         title: "Lambda",
         summary: "A scoreboard platform for CTF.",
-        task: "TODO: what was wrong with the existing platforms — a couple of lines from the owner.",
+        task: "CTFd runs on Python and was slow, whereas Rust is fast and safe. I could not find a decent CTFd equivalent written in Rust either, so I decided to build my own.",
       },
     },
   },
@@ -115,17 +116,17 @@ export const projects: Project[] = [
     repo: "https://github.com/H1z3-br0/C0d3x_Fun_Club",
     text: {
       ru: {
-	title: "C0dex Fun Club",
-	summary: "Ферма ai агентов для решения CTF задач",
-	task: "Сделать ферму ai агентов, которая относительно быстро и хорошо решает ctf таски, но без  дикого расхода токенов",
+        title: "C0dex Fun Club",
+        summary: "Ферма ai агентов для решения CTF задач",
+        task: "Сделать ферму ai агентов, которая относительно быстро и хорошо решает ctf таски, но без дикого расхода токенов",
       },
-      	title: "C0dex Fun Club",
-	summary: "",
-	task: "",
-
-      }
-    }
-  }
+      en: {
+        title: "C0dex Fun Club",
+        summary: "A farm of AI agents that solves CTF tasks.",
+        task: "Build a farm of AI agents that solves CTF tasks reasonably fast and reasonably well, without burning an absurd number of tokens.",
+      },
+    },
+  },
 ];
 
 export type Profile = {

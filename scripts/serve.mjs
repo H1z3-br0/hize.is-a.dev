@@ -89,7 +89,7 @@ const server = createServer(async (req, res) => {
   res.writeHead(200, {
     'content-type': type,
     'content-length': body.length,
-    'cache-control': immutable ? 'public, max-age=31536000, immutable' : 'public, max-age=300',
+    'cache-control': immutable ? 'public, max-age=31536000, immutable' : 'no-cache',
     ...SECURITY_HEADERS,
   });
   res.end(body);

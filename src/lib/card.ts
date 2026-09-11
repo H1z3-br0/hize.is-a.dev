@@ -9,15 +9,16 @@ import { longDate } from '../config/format.ts';
 const NL = String.fromCharCode(10);
 const WIDTH = 72;
 
-function wrap(text: string, indent = ''): string[] {
+function wrap(text: string, indent = '', hang = indent): string[] {
   const out: string[] = [];
   let line = indent;
   for (const word of text.split(/\s+/).filter(Boolean)) {
-    if (line.length > indent.length && line.length + 1 + word.length > WIDTH) {
+    const pad = out.length ? hang : indent;
+    if (line.length > pad.length && line.length + 1 + word.length > WIDTH) {
       out.push(line);
-      line = indent + word;
+      line = hang + word;
     } else {
-      line = line.length > indent.length ? `${line} ${word}` : indent + word;
+      line = line.length > pad.length ? `${line} ${word}` : pad + word;
     }
   }
   if (line.trim()) out.push(line);
@@ -52,7 +53,7 @@ export function card(lang: Lang): string {
   projects.forEach((p, i) => {
     const c = p.text[lang];
     if (i) out.push('');
-    out.push(`${i + 1}. ${c.title}`);
+    out.push(...wrap(`${i + 1}. ${c.title}`, '', '   '));
     out.push(`   ${p.tools.join(', ')}`);
     out.push(...wrap(c.summary, '   '));
     if (p.repo) out.push(`   ${p.repo}`);

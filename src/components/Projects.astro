@@ -32,8 +32,8 @@ const t = ui[lang];
               <div class="project__body">
                 <p>{c.task}</p>
                 {p.notation && <p class="notation" set:html={p.notation} />}
-                <p>{c.approach}</p>
-                <p>{c.done}</p>
+                {c.approach && <p>{c.approach}</p>}
+                {c.done && <p>{c.done}</p>}
                 {p.repo && (
                   <p class="project__link">
                     <a href={p.repo}>{t.code}</a>
