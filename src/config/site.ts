@@ -26,8 +26,8 @@ export function sectionLabel(id: SectionId, lang: Lang): string {
 }
 
 export const name: L = {
-  ru: "Hize",
-  en: "Hize",
+  ru: "Имам Чобанов",
+  en: "Imam Chobanov",
 };
 
 export const lead: L = {
@@ -36,14 +36,15 @@ export const lead: L = {
 };
 
 export const subLead: L = {
-  ru: "катаю CTF в команде 4x10m, участвую в bug bounty программах и .",
+  ru: "Катаю CTF в команде 4x10m, участвую в bug bounty программах и занимаюсь администрированием всякого разного.",
   en: "CTF with 4x10m, vulnerability hunting in bug bounty.",
 };
 
 export const now: L<string[]> = {
   ru: [
-    "TODO: заменить своим текстом. Пишу проверку изоморфизма решёток по Плескену–Сувинье на SageMath: класс решётки, LLL и перебор коротких векторов готовы, сейчас — отсечение по fingerprint.",
-    "Цель на ближайшее время — стажировка криптографом в «Коде Безопасности».",
+    "Работаю над постквантовыми алгоритмами шифрования на решетках и линейных кодах.", 
+    "Изучаю classic ML и DL.",
+    "На постоянной основе занимаюсь оптимизацией аптайма до нуля, или как это еще называют 'SRE'",
   ],
   en: [
     "TODO: replace with your own words. Writing a Plesken–Souvignier lattice isomorphism check in SageMath: the lattice class, LLL and short-vector enumeration are in place; fingerprint pruning is next.",
@@ -69,11 +70,11 @@ export const projects: Project[] = [
   {
     id: "lattice-isomorphism",
     tools: ["SageMath", "Python"],
-    repo: null,
+    repo: "https://github.com/H1z3-br0/SummerCrypto-19-Project",
     notation: "Λ₁ ≅ Λ₂ ⟺ ∃U ∈ GL<sub>n</sub>(ℤ) : U<sup>T</sup>G₁U = G₂",
     text: {
       ru: {
-        title: "Задача изоморфизма решёток",
+        title: "Реализация алгоритма Плескена-Сувижнера для решения задачи изоморфизма решеток",
         summary:
           "Определяет, задают ли два целочисленных базиса одну и ту же решётку.",
         task: "Даны два базиса. Нужно узнать, существует ли целочисленная замена базиса с определителем ±1, переводящая один в другой и сохраняющая все скалярные произведения. Перебором это не решается: группа GL(n, ℤ) бесконечна.",
@@ -99,19 +100,32 @@ export const projects: Project[] = [
       ru: {
         title: "Lambda",
         summary: "Платформа-борда для CTF.",
-        task: "TODO: что именно не устраивало в существующих платформах — пара строк от владельца.",
-        approach:
-          "TODO: устройство — что на Rust, что хранит состояние, как раздаются задания.",
+        task: "CTFd на python был медленным, а Rust быстрый и безопасный. Также не нашел достойных аналогов CTFd на Rust, вот и решил сделать свой.",
       },
       en: {
         title: "Lambda",
         summary: "A scoreboard platform for CTF.",
         task: "TODO: what was wrong with the existing platforms — a couple of lines from the owner.",
-        approach:
-          "TODO: architecture — what is in Rust, where state lives, how tasks are served.",
       },
     },
   },
+  {
+    id: "codex-farm",
+    tools: ["Python", "AI Harness Configuration"],
+    repo: "https://github.com/H1z3-br0/C0d3x_Fun_Club",
+    text: {
+      ru: {
+	title: "C0dex Fun Club",
+	summary: "Ферма ai агентов для решения CTF задач",
+	task: "Сделать ферму ai агентов, которая относительно быстро и хорошо решает ctf таски, но без  дикого расхода токенов",
+      },
+      	title: "C0dex Fun Club",
+	summary: "",
+	task: "",
+
+      }
+    }
+  }
 ];
 
 export type Profile = {
@@ -123,22 +137,22 @@ export type Profile = {
 
 export const stack: Profile[] = [
   {
-    id: "crypto",
-    label: { ru: "криптография", en: "cryptography" },
+    id: "Crypto",
+    label: { ru: "Криптография", en: "Cryptography" },
     tools: ["SageMath", "Magma", "CyberChef"],
   },
   {
-    id: "ml",
-    label: { ru: "машинное обучение", en: "machine learning" },
+    id: "ML",
+    label: { ru: "Машинное Обучение", en: "Machine Learning" },
     tools: ["PyTorch", "scikit-learn", "pandas", "NumPy", "matplotlib"],
     note: {
-      ru: "классический ML и глубокое обучение",
-      en: "classical ML and deep learning",
+      ru: "Классический ML и Глубокое Обучение",
+      en: "Classical ML and Deep Learning",
     },
   },
   {
-    id: "devops",
-    label: { ru: "инфраструктура", en: "infrastructure" },
+    id: "Devops/SRE",
+    label: { ru: "Инфраструктура", en: "Infrastructure" },
     tools: ["Docker", "Nginx", "Linux", "Wireshark"],
   },
 ];
