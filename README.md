@@ -146,15 +146,36 @@ rsync -az --delete dist/ user@host:/var/www/imam/
 На сервере (Debian):
 
 ```bash
-sudo cp deploy/nginx.conf /etc/nginx/sites-available/imam
-sudo ln -s /etc/nginx/sites-available/imam /etc/nginx/sites-enabled/
+sudo cp deploy/nginx.conf /etc/nginx/sites-available/hize.is-a.dev
+sudo ln -sf /etc/nginx/sites-available/hize.is-a.dev /etc/nginx/sites-enabled/
+sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t && sudo systemctl reload nginx
-sudo certbot --nginx -d ДОМЕН -d www.ДОМЕН
 ```
 
-В `deploy/nginx.conf` уже лежат UA-детект для `curl`, выбор языка по
-`Accept-Language`, заголовки безопасности, CSP, кэширование и страница 404.
-Строки `ssl_certificate` допишет certbot.
+`default` из `sites-enabled` нужно убрать: он тоже объявлен `default_server`,
+а двух таких на одном порту nginx не допускает.
+
+В конфиге уже прописаны `server_name hize.is-a.dev 151.241.109.127` и
+`root /var/www/hize.is-a.dev/dist`, поэтому он работает и по IP, и по домену,
+когда тот заработает.
+
+Когда домен начнёт указывать на этот сервер, TLS добавляет certbot — он сам
+допишет `listen 443 ssl`, пути к сертификату и редирект с 80-го порта в
+существующий блок:
+
+```bash
+sudo certbot --nginx -d hize.is-a.dev
+```
+
+После этого поменяйте в `identity` (`src/config/site.ts`):
+
+```ts
+domain: "hize.is-a.dev",
+https: true,
+```
+
+и пересоберите — адрес разойдётся по canonical, og, `security.txt`,
+`sitemap.xml` и подсказке `curl`.
 
 ## Грабли
 

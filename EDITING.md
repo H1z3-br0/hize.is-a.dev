@@ -312,6 +312,17 @@ sudo nginx -t && sudo systemctl reload nginx
 | Кэш браузера | Ctrl+Shift+R |
 | Перед nginx стоит CDN | почистить кэш там же |
 | Права на файлы | `sudo chown -R www-data:www-data /var/www/imam` |
+| `curl` отдаёт HTML вместо визитки | отвечает не наш конфиг, см. ниже |
+
+Проверить, наш ли конфиг обслуживает запрос:
+
+```bash
+curl -sI http://ВАШ_ХОСТ/ | grep -i x-lattice
+```
+
+Если заголовка `X-Lattice` нет — работает чужой server-блок (обычно
+`/etc/nginx/sites-enabled/default`), и вся логика с `curl` не выполняется.
+Посмотреть, какие блоки есть: `sudo nginx -T | grep -n "server_name\|listen"`.
 
 Проверить, что на сервере лежит именно новое, можно не открывая браузер:
 

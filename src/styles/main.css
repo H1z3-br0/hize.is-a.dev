@@ -294,7 +294,22 @@ p {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: subgrid;
-  margin: 0 0 2rem;
+  margin: 0 0 1.3rem;
+}
+
+.hero__pointers {
+  grid-column: 2;
+  margin-bottom: 2.2rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+}
+
+.hero__pointers .pointers {
+  margin-top: 0;
+}
+
+.hero__pointers .pointers:last-child {
+  margin-bottom: 0;
 }
 
 .lattice__frame {
@@ -875,6 +890,7 @@ dialog::backdrop {
   }
 
   .section__body,
+  .hero__pointers,
   .hero__name,
   .hero__lead,
   .hero__sub,

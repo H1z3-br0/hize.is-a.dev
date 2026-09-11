@@ -1,6 +1,8 @@
 ---
 import type { Lang } from '../config/site.ts';
-import { name, lead, subLead, ui, identity, githubUrl, telegramUrl, mailto } from '../config/site.ts';
+import {
+  name, lead, subLead, ui, identity, githubUrl, telegramUrl, mailto, bareHost,
+} from '../config/site.ts';
 
 const { lang } = Astro.props as { lang: Lang };
 const t = ui[lang];
@@ -20,6 +22,13 @@ const t = ui[lang];
       <button id="lattice-reduce" class="lattice__reduce" type="button" hidden>{t.reduceAgain}</button>
     </figcaption>
   </figure>
+
+  <div class="hero__pointers">
+    <p class="pointers">
+      {t.curlHint} <code>curl {bareHost}</code>, <a href="/.well-known/security.txt">{t.securityTxt}</a>.
+    </p>
+    <p class="pointers pointers--flag">{t.flagHint}</p>
+  </div>
 
   <h1 class="hero__name">{name[lang]}</h1>
   <p class="hero__lead">{lead[lang]}</p>

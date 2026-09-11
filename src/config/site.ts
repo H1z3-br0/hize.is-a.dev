@@ -3,7 +3,8 @@ export type Lang = "ru" | "en";
 type L<T = string> = Record<Lang, T>;
 
 export const identity = {
-  domain: null as string | null,
+  domain: "151.241.109.127" as string | null,
+  https: false,
   email: "pkd12305@gmail.com",
   github: "H1z3-br0",
   telegram: "hize_k",
@@ -373,7 +374,7 @@ export const shellText: Record<Lang, ShellStrings> = {
 };
 
 export const origin = identity.domain
-  ? `https://${identity.domain}`
+  ? `${identity.https ? "https" : "http"}://${identity.domain}`
   : "http://localhost:4321";
 export const bareHost = identity.domain ?? "localhost:4321";
 export const githubUrl = `https://github.com/${identity.github}`;
