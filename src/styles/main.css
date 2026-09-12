@@ -590,12 +590,6 @@ details[open] .project__more::after {
   color: var(--ink-2);
 }
 
-.live {
-  margin-top: 1.1rem;
-  color: var(--ink-2);
-  font-size: var(--fs-small);
-}
-
 .pgp {
   margin-top: 1.1rem;
   font-size: var(--fs-small);

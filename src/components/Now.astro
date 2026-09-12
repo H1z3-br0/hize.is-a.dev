@@ -1,24 +1,11 @@
 ---
 import type { Lang } from '../config/site.ts';
-import { now, ui } from '../config/site.ts';
-import { githubLive } from '../config/live.ts';
-import { longDate } from '../config/format.ts';
+import { now } from '../config/site.ts';
 import Section from './Section.astro';
 
 const { lang } = Astro.props as { lang: Lang };
-const t = ui[lang];
 ---
 
 <Section id="now" lang={lang}>
   {now[lang].map((line) => <p>{line}</p>)}
-
-  {
-    githubLive && (
-      <p class="live">
-        <a href={githubLive.repoUrl}>
-          {t.commitLine(githubLive.repo, longDate(githubLive.date, lang))}
-        </a>
-      </p>
-    )
-  }
 </Section>

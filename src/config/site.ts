@@ -196,7 +196,6 @@ export interface UiStrings {
   langSwitchShort: string;
   langSwitchLabel: string;
   paletteHint: string;
-  commitLine: (repo: string, when: string) => string;
   notFound: { title: string; body: string; home: string };
 }
 
@@ -226,7 +225,6 @@ export const ui: Record<Lang, UiStrings> = {
     langSwitchShort: "EN",
     langSwitchLabel: "Switch to English",
     paletteHint: "Палитра команд —",
-    commitLine: (repo, when) => `Последний коммит — в ${repo}, ${when}.`,
     notFound: {
       title: "Такого вектора в решётке нет",
       body: "Страница не найдена. Ближайший узел — начало координат.",
@@ -258,7 +256,6 @@ export const ui: Record<Lang, UiStrings> = {
     langSwitchShort: "RU",
     langSwitchLabel: "Переключить на русский",
     paletteHint: "Command palette —",
-    commitLine: (repo, when) => `Last commit — in ${repo}, ${when}.`,
     notFound: {
       title: "No such vector in the lattice",
       body: "Page not found. The nearest node is the origin.",

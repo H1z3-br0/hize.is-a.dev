@@ -4,9 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "data": "node scripts/fetch-data.mjs",
     "dev": "astro dev",
-    "build": "npm run data && astro build",
+    "build": "astro build",
     "preview": "node scripts/serve.mjs",
     "check": "astro check"
   },

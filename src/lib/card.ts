@@ -3,8 +3,6 @@ import {
   name, lead, subLead, now, projects, stack, writeups, identity, ui,
   sectionLabel, githubUrl, ctftimeUrl, origin,
 } from '../config/site.ts';
-import { githubLive } from '../config/live.ts';
-import { longDate } from '../config/format.ts';
 
 const NL = String.fromCharCode(10);
 const WIDTH = 72;
@@ -45,9 +43,6 @@ export function card(lang: Lang): string {
 
   out.push(...heading(sectionLabel('now', lang)));
   for (const line of now[lang]) out.push(...wrap(line));
-  if (githubLive) {
-    out.push(...wrap(t.commitLine(githubLive.repo, longDate(githubLive.date, lang))));
-  }
 
   out.push(...heading(sectionLabel('projects', lang)));
   projects.forEach((p, i) => {
